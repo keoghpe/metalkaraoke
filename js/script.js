@@ -1,9 +1,9 @@
+var SourceJSON      = 'js/where_we_call_home.json';
 var iframeElement   = document.querySelector('iframe');
 var widget          = SC.Widget(iframeElement);
 var i               = 0;
-jQuery("#responsive_headline").fitText();
 
-loadJSON('js/where_we_call_home.json',
+loadJSON( SourceJSON,
          function(data) { karaoke(data); },
          function(xhr) { console.error(xhr); }
 );
@@ -12,10 +12,11 @@ function karaoke (theData) {
 
     widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(pos) {
         
-        console.log(pos.currentPosition);
+        //console.log(pos.currentPosition);
         //document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
-
-        if (pos.currentPosition >= theData.theLyrics[i].timeStamp - 300 && pos.currentPosition <= theData.theLyrics[i+1].timeStamp -300) {
+        console.log(theData.theLyrics[i].lyric);
+        document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
+        if (pos.currentPosition >= theData.theLyrics[i].timeStamp && pos.currentPosition <= theData.theLyrics[i+1].timeStamp) {
             console.log(theData.theLyrics[i].lyric);
             document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
             i++;
@@ -25,17 +26,25 @@ function karaoke (theData) {
 
     widget.bind(SC.Widget.Events.SEEK, function(pos){
        var posish = pos.currentPosition;
-        while(theData.theLyrics[i].timeStamp > posish && theData.theLyrics[i+1].timeStamp > posish){
-            i++;
-        }
-        console.log(i);
+
+       console.log("posish " + posish);
+       for (var j = 0; j < theData.theLyrics.length-1; j++) {
+           if (posish >= theData.theLyrics[j].timeStamp && posish <= theData.theLyrics[j+1].timeStamp) {
+            i = j;
+           };
+       };
+        console.log("i Changed " + i);
     });
     /*widget.bind(SC.Widget.Events.PAUSE, function () {
         document.getElementsByTagName("H1")[0].innerHTML= 'What ye pausin\' for? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a>';
     });*/
 
     widget.bind(SC.Widget.Events.FINISH, function () {
-        document.getElementsByTagName("H1")[0].innerHTML= 'Wasn\'t that delish? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a>';
+        document.getElementById("lyrics").innerHTML= 
+        '<p>Wasn\'t that delish? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a></p>'
+        + '</br>'
+        + '<iframe width="560" height="315" src="//www.youtube.com/embed/b0TrtA2ghxM" frameborder="0" allowfullscreen></iframe>'
+        + '<iframe width="560" height="315" src="//www.youtube.com/embed/5126za7ugaQ" frameborder="0" allowfullscreen></iframe>';
     });  
 }
 

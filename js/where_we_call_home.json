@@ -124,10 +124,17 @@
 		"timeStamp":141200,
 		"lyric": "<img src=\"http://25.media.tumblr.com/0635a8fa8c351b3ad0696649fa77c984/tumblr_mzw9jzqrRJ1rqhbvqo1_500.gif\" alt=\"\">"
 	},
-	
 	{
 		"timeStamp":144105,
 		"lyric": "Where do i belong and where do i call home"
+	},
+	{
+		"timeStamp":1441050,
+		"lyric": "Buffer to catch errors"
+	},
+	{
+		"timeStamp":1441050,
+		"lyric": "Buffer to catch errors"
 	}
 	]	
 }

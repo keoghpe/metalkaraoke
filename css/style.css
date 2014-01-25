@@ -18,7 +18,8 @@ iframe:hover{
 	opacity:.6;
 }*/
 #lyrics{
-	max-height: 100%;
+	margin: 3px;
+	max-height: 70%;
 }
 #playa{
 	position: fixed;
@@ -36,5 +37,5 @@ iframe:hover {
   opacity: 0.6;
 }
 img{
-	width: 100%;
+	height: 100%;
 }
