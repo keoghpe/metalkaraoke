@@ -1,6 +1,7 @@
 var iframeElement   = document.querySelector('iframe');
 var widget          = SC.Widget(iframeElement);
 var i=0;
+jQuery("#responsive_headline").fitText();
 /*
 var theLyrics		= {
 	line1: {
@@ -19,18 +20,15 @@ function karaoke (theData) {
            
             widget.getPosition(function(position){
 
-                if (position >= theData.theLyrics[i].timeStamp - 200 && position <= theData.theLyrics[i].timeStamp + 200) {
+                if (position >= theData.theLyrics[i].timeStamp - 300 && position <= theData.theLyrics[i].timeStamp + 300) {
                     console.log(theData.theLyrics[i].lyric);
                     document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
                     i++;
                 };
-
-
             });
         });
     });   
 }
-
 
 //This is from http://stackoverflow.com/questions/9838812/how-can-i-open-a-json-file-in-javascript-without-jquery
 function loadJSON(path, success, error)
