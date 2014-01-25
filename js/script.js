@@ -12,7 +12,7 @@ function karaoke (theData) {
 
     widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(pos) {
         
-        //console.log(pos.currentPosition);
+        console.log(pos.currentPosition);
         //document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
 
         if (pos.currentPosition >= theData.theLyrics[i].timeStamp - 300 && pos.currentPosition <= theData.theLyrics[i+1].timeStamp -300) {
@@ -24,18 +24,15 @@ function karaoke (theData) {
     });
 
     widget.bind(SC.Widget.Events.SEEK, function(pos){
-       /* var posish = pos.currentPosition;
+       var posish = pos.currentPosition;
         while(theData.theLyrics[i].timeStamp > posish && theData.theLyrics[i+1].timeStamp > posish){
             i++;
         }
-        while(theData.theLyrics[i].timeStamp < posish && theData.theLyrics[i-1].timeStamp < posish){
-            i--;
-        }*/
         console.log(i);
     });
-    widget.bind(SC.Widget.Events.PAUSE, function () {
+    /*widget.bind(SC.Widget.Events.PAUSE, function () {
         document.getElementsByTagName("H1")[0].innerHTML= 'What ye pausin\' for? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a>';
-    });
+    });*/
 
     widget.bind(SC.Widget.Events.FINISH, function () {
         document.getElementsByTagName("H1")[0].innerHTML= 'Wasn\'t that delish? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a>';
