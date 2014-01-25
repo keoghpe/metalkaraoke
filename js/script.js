@@ -1,33 +1,45 @@
 var iframeElement   = document.querySelector('iframe');
 var widget          = SC.Widget(iframeElement);
-var i=0;
+var i               = 0;
 jQuery("#responsive_headline").fitText();
-/*
-var theLyrics		= {
-	line1: {
-		timeStamp: 4500,
-		lyric: 'I lie in a bed of snakes'
-	}
-}*/
+
 loadJSON('js/where_we_call_home.json',
          function(data) { karaoke(data); },
          function(xhr) { console.error(xhr); }
 );
 
 function karaoke (theData) {
-    widget.bind(SC.Widget.Events.PLAY, function(){
-        widget.bind(SC.Widget.Events.PLAY_PROGRESS, function() {
-           
-            widget.getPosition(function(position){
 
-                if (position >= theData.theLyrics[i].timeStamp - 300 && position <= theData.theLyrics[i].timeStamp + 300) {
-                    console.log(theData.theLyrics[i].lyric);
-                    document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
-                    i++;
-                };
-            });
-        });
-    });   
+    widget.bind(SC.Widget.Events.PLAY_PROGRESS, function(pos) {
+        
+        //console.log(pos.currentPosition);
+        //document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
+
+        if (pos.currentPosition >= theData.theLyrics[i].timeStamp - 300 && pos.currentPosition <= theData.theLyrics[i+1].timeStamp -300) {
+            console.log(theData.theLyrics[i].lyric);
+            document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
+            i++;
+        };
+
+    });
+
+    widget.bind(SC.Widget.Events.SEEK, function(pos){
+       /* var posish = pos.currentPosition;
+        while(theData.theLyrics[i].timeStamp > posish && theData.theLyrics[i+1].timeStamp > posish){
+            i++;
+        }
+        while(theData.theLyrics[i].timeStamp < posish && theData.theLyrics[i-1].timeStamp < posish){
+            i--;
+        }*/
+        console.log(i);
+    });
+    widget.bind(SC.Widget.Events.PAUSE, function () {
+        document.getElementsByTagName("H1")[0].innerHTML= 'What ye pausin\' for? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a>';
+    });
+
+    widget.bind(SC.Widget.Events.FINISH, function () {
+        document.getElementsByTagName("H1")[0].innerHTML= 'Wasn\'t that delish? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a>';
+    });  
 }
 
 //This is from http://stackoverflow.com/questions/9838812/how-can-i-open-a-json-file-in-javascript-without-jquery
