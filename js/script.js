@@ -14,13 +14,14 @@ function karaoke (theData) {
         
         //console.log(pos.currentPosition);
         //document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
+        console.log(pos.currentPosition);
         console.log(theData.theLyrics[i].lyric);
         document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
-        if (pos.currentPosition >= theData.theLyrics[i].timeStamp && pos.currentPosition <= theData.theLyrics[i+1].timeStamp) {
+        if (pos.currentPosition >= theData.theLyrics[i+1].timeStamp && pos.currentPosition < theData.theLyrics[i+2].timeStamp) {
             console.log(theData.theLyrics[i].lyric);
             document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
             i++;
-        };
+        }
 
     });
 
@@ -29,10 +30,11 @@ function karaoke (theData) {
 
        console.log("posish " + posish);
        for (var j = 0; j < theData.theLyrics.length-1; j++) {
-           if (posish >= theData.theLyrics[j].timeStamp && posish <= theData.theLyrics[j+1].timeStamp) {
+           if (posish >= theData.theLyrics[j].timeStamp && posish < theData.theLyrics[j+1].timeStamp) {
+            document.getElementsByTagName("H1")[0].innerHTML=theData.theLyrics[i].lyric;
             i = j;
-           };
-       };
+           }
+       }
         console.log("i Changed " + i);
     });
     /*widget.bind(SC.Widget.Events.PAUSE, function () {
@@ -41,10 +43,7 @@ function karaoke (theData) {
 
     widget.bind(SC.Widget.Events.FINISH, function () {
         document.getElementById("lyrics").innerHTML= 
-        '<p>Wasn\'t that delish? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a></p>'
-        + '</br>'
-        + '<iframe width="560" height="315" src="//www.youtube.com/embed/b0TrtA2ghxM" frameborder="0" allowfullscreen></iframe>'
-        + '<iframe width="560" height="315" src="//www.youtube.com/embed/5126za7ugaQ" frameborder="0" allowfullscreen></iframe>';
+        '<p>Wasn\'t that delish? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a></p>' + '</br>' + '<iframe width="560" height="315" src="//www.youtube.com/embed/b0TrtA2ghxM" frameborder="0" allowfullscreen></iframe>' + '<iframe width="560" height="315" src="//www.youtube.com/embed/5126za7ugaQ" frameborder="0" allowfullscreen></iframe>';
     });  
 }
 
