@@ -37,9 +37,9 @@ function karaoke (theData) {
        }
         console.log("i Changed " + i);
     });
-    /*widget.bind(SC.Widget.Events.PAUSE, function () {
+    widget.bind(SC.Widget.Events.PAUSE, function () {
         document.getElementsByTagName("H1")[0].innerHTML= 'What ye pausin\' for? Check out the lads <a href="http://redenemy.bandcamp.com/">Bandcamp</a>';
-    });*/
+    });
 
     widget.bind(SC.Widget.Events.FINISH, function () {
         document.getElementById("lyrics").innerHTML= 

@@ -1,4 +1,4 @@
-html{
+html, body{
 	background: #222;
 	color: #eee;
 }
@@ -6,6 +6,7 @@ html{
 h1 {
 	font-family: 'Metal Mania', cursive;
 	text-align: center;
+	color: #eee;
 }
 p {
 	font-family: helvetica;
@@ -38,4 +39,13 @@ iframe:hover {
 }
 img{
 	height: 100%;
+}
+
+#dvLoading {
+   background:#000 url(loader.gif) no-repeat center center;
+   height: 100%;
+   width: 100%;
+   z-index: 9999;
+   left: 50%;
+   top: 50%;
 }
